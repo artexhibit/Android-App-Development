@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Туду Лист</string>
+    <string name="add_to_do">Напиши что-нибудь</string>
+    <string name="add">Добавить</string>
+    <string name="any_text">Это может быть любой текст</string>
+    <string name="delete_message">Правда хочешь удалить?</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="delete">Удалить</string>
+    <string name="empty">" "</string>
+</resources>
