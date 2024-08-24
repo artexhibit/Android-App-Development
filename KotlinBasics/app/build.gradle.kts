@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    buildFeatures { viewBinding = true }
     namespace = "ru.igorcodes.kotlinbasics"
     compileSdk = 34
 
@@ -36,7 +37,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
