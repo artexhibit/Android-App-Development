@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.igorcodes.kotlinbasics.data.Lesson
 import ru.igorcodes.kotlinbasics.data.LessonsData
 import ru.igorcodes.kotlinbasics.databinding.ActivityMainBinding
+import ru.igorcodes.kotlinbasics.gridView.GridViewActivity
+import ru.igorcodes.kotlinbasics.intent.IntentMainActivity
+import ru.igorcodes.kotlinbasics.layouts.LayoutsActivity
+import ru.igorcodes.kotlinbasics.lifeCycles.LifeCyclesActivity
 import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
 import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
 
@@ -44,12 +48,12 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
 
     override fun onLessonClick(lesson: Lesson) {
         when (lesson) {
-            Lesson.GRID_VIEW -> TODO()
+            Lesson.GRID_VIEW -> createIntent(GridViewActivity())
             Lesson.MY_FIRST_PROJECT -> createIntent(MyFirstProjectActivity())
             Lesson.OBJECT_ORIENTED_PROGRAMMING -> createIntent(ObjectOrientedProgrammingActivity())
-            Lesson.INTENT -> TODO()
-            Lesson.LAYOUTS -> TODO()
-            Lesson.LIFE_CYCLES -> TODO()
+            Lesson.INTENT -> createIntent(IntentMainActivity())
+            Lesson.LAYOUTS -> createIntent(LayoutsActivity())
+            Lesson.LIFE_CYCLES -> createIntent(LifeCyclesActivity())
             Lesson.LIST_VIEW -> TODO()
             Lesson.RECYCLER_VIEW -> TODO()
             Lesson.SCROLL_VIEW -> TODO()

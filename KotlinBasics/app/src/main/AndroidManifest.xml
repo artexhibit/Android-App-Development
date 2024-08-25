@@ -22,6 +22,13 @@
         </activity>
         <activity android:name=".myFirstProject.MyFirstProjectActivity"></activity>
         <activity android:name=".objectOrientedProgramming.ObjectOrientedProgrammingActivity"></activity>
+        <activity android:name=".intent.IntentMainActivity"></activity>
+        <activity android:name=".intent.IntentSecondActivity"></activity>
+        <activity android:name=".layouts.LayoutsActivity"></activity>
+        <activity android:name=".gridView.GridViewActivity"></activity>
+        <activity android:name=".lifeCycles.LifeCyclesActivity"></activity>
+        <activity android:name=".lifeCycles.LifeCyclesFragmentActivity"></activity>
+        <activity android:name=".lifeCycles.LifeCyclesSecondActivity"></activity>
     </application>
 
 </manifest>
