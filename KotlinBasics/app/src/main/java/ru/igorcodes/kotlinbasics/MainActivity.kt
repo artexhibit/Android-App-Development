@@ -10,6 +10,7 @@ import ru.igorcodes.kotlinbasics.data.Lesson
 import ru.igorcodes.kotlinbasics.data.LessonsData
 import ru.igorcodes.kotlinbasics.databinding.ActivityMainBinding
 import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
+import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
 
 class MainActivity: AppCompatActivity(), LessonClickListener {
 
@@ -45,7 +46,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
         when (lesson) {
             Lesson.GRID_VIEW -> TODO()
             Lesson.MY_FIRST_PROJECT -> createIntent(MyFirstProjectActivity())
-            Lesson.OBJECT_ORIENTED_PROGRAMMING -> TODO()
+            Lesson.OBJECT_ORIENTED_PROGRAMMING -> createIntent(ObjectOrientedProgrammingActivity())
             Lesson.INTENT -> TODO()
             Lesson.LAYOUTS -> TODO()
             Lesson.LIFE_CYCLES -> TODO()

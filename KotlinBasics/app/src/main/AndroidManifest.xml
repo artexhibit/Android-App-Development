@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".myFirstProject.MyFirstProjectActivity"></activity>
+        <activity android:name=".objectOrientedProgramming.ObjectOrientedProgrammingActivity"></activity>
     </application>
 
 </manifest>
