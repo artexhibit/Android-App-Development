@@ -29,6 +29,10 @@
         <activity android:name=".lifeCycles.LifeCyclesActivity"></activity>
         <activity android:name=".lifeCycles.LifeCyclesFragmentActivity"></activity>
         <activity android:name=".lifeCycles.LifeCyclesSecondActivity"></activity>
+        <activity android:name=".listView.ListViewActivity"></activity>
+        <activity android:name=".recyclerView.RecyclerViewActivity"></activity>
+        <activity android:name=".scrollView.ScrollViewActivity"></activity>
+        <activity android:name=".services.ServicesActivity"></activity>
     </application>
 
 </manifest>

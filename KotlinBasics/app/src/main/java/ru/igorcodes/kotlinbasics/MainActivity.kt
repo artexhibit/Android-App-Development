@@ -1,6 +1,7 @@
 package ru.igorcodes.kotlinbasics
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ScrollView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,8 +14,12 @@ import ru.igorcodes.kotlinbasics.gridView.GridViewActivity
 import ru.igorcodes.kotlinbasics.intent.IntentMainActivity
 import ru.igorcodes.kotlinbasics.layouts.LayoutsActivity
 import ru.igorcodes.kotlinbasics.lifeCycles.LifeCyclesActivity
+import ru.igorcodes.kotlinbasics.listView.ListViewActivity
 import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
 import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
+import ru.igorcodes.kotlinbasics.recyclerView.RecyclerViewActivity
+import ru.igorcodes.kotlinbasics.scrollView.ScrollViewActivity
+import ru.igorcodes.kotlinbasics.services.ServicesActivity
 
 class MainActivity: AppCompatActivity(), LessonClickListener {
 
@@ -54,10 +59,10 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.INTENT -> createIntent(IntentMainActivity())
             Lesson.LAYOUTS -> createIntent(LayoutsActivity())
             Lesson.LIFE_CYCLES -> createIntent(LifeCyclesActivity())
-            Lesson.LIST_VIEW -> TODO()
-            Lesson.RECYCLER_VIEW -> TODO()
-            Lesson.SCROLL_VIEW -> TODO()
-            Lesson.SERVICES -> TODO()
+            Lesson.LIST_VIEW -> createIntent(ListViewActivity())
+            Lesson.RECYCLER_VIEW -> createIntent(RecyclerViewActivity())
+            Lesson.SCROLL_VIEW -> createIntent(ScrollViewActivity())
+            Lesson.SERVICES -> createIntent(ServicesActivity())
             Lesson.TOP_APP_BAR -> TODO()
             Lesson.USER_INTERACTIONS -> TODO()
             Lesson.WEB_VIEW -> TODO()
