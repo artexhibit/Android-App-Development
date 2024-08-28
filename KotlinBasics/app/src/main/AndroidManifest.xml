@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,19 +24,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".myFirstProject.MyFirstProjectActivity"></activity>
-        <activity android:name=".objectOrientedProgramming.ObjectOrientedProgrammingActivity"></activity>
-        <activity android:name=".intent.IntentMainActivity"></activity>
-        <activity android:name=".intent.IntentSecondActivity"></activity>
-        <activity android:name=".layouts.LayoutsActivity"></activity>
-        <activity android:name=".gridView.GridViewActivity"></activity>
-        <activity android:name=".lifeCycles.LifeCyclesActivity"></activity>
-        <activity android:name=".lifeCycles.LifeCyclesFragmentActivity"></activity>
-        <activity android:name=".lifeCycles.LifeCyclesSecondActivity"></activity>
-        <activity android:name=".listView.ListViewActivity"></activity>
-        <activity android:name=".recyclerView.RecyclerViewActivity"></activity>
-        <activity android:name=".scrollView.ScrollViewActivity"></activity>
-        <activity android:name=".services.ServicesActivity"></activity>
+        <activity android:name=".myFirstProject.MyFirstProjectActivity" />
+        <activity android:name=".objectOrientedProgramming.ObjectOrientedProgrammingActivity" />
+        <activity android:name=".intent.IntentMainActivity" />
+        <activity android:name=".intent.IntentSecondActivity" />
+        <activity android:name=".layouts.LayoutsActivity" />
+        <activity android:name=".gridView.GridViewActivity" />
+        <activity android:name=".lifeCycles.LifeCyclesActivity" />
+        <activity android:name=".lifeCycles.LifeCyclesFragmentActivity" />
+        <activity android:name=".lifeCycles.LifeCyclesSecondActivity" />
+        <activity android:name=".listView.ListViewActivity" />
+        <activity android:name=".recyclerView.RecyclerViewActivity" />
+        <activity android:name=".scrollView.ScrollViewActivity" />
+        <activity android:name=".services.ServicesActivity" />
+        <activity android:name=".topAppBar.TopAppBarActivity" />
+        <activity android:name=".userInteractions.UserInteractionsActivity" />
+        <activity android:name=".webView.WebViewActivity" />
+        <activity android:name=".multipleLanguage.MultipleLanguageActivity" />
     </application>
 
 </manifest>

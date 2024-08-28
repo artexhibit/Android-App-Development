@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Основы Котлина</string>
+    <string name="text_view">Текст вью</string>
+    <string name="another_text_view">Текст вью</string>
+    <string name="hello">Привет Мир</string>
+    <string name="show_toast">Показать тост</string>
+    <string name="toast">Это тост</string>
+</resources>

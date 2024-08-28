@@ -4,6 +4,10 @@
     <string name="text_view">TextView</string>
     <string name="another_text_view">TextView</string>
 
+    <string name="hello">Hello World</string>
+    <string name="show_toast">Show a toast message</string>
+    <string name="toast">This is a toast message</string>strings.xml
+
     <string-array name="countries">
         <item>England</item>
         <item>Belgium</item>
