@@ -6,7 +6,8 @@
 
     <string name="hello">Hello World</string>
     <string name="show_toast">Show a toast message</string>
-    <string name="toast">This is a toast message</string>strings.xml
+    <string name="toast">This is a toast message</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="countries">
         <item>England</item>
@@ -14,6 +15,14 @@
         <item>Germany</item>
         <item>Russia</item>
         <item>Finland</item>
+    </string-array>
+
+    <string-array name="cities">
+        <item>Berlin</item>
+        <item>Athens</item>
+        <item>Rome</item>
+        <item>Tokyo</item>
+        <item>Amsterdam</item>
     </string-array>
 
     <string-array name="countriesListView">

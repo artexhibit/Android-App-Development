@@ -6,4 +6,5 @@
     <string name="hello">Привет Мир</string>
     <string name="show_toast">Показать тост</string>
     <string name="toast">Это тост</string>
+    <string name="hello_blank_fragment">Привет пустой фрагмент</string>
 </resources>

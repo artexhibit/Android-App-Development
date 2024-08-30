@@ -41,6 +41,12 @@
         <activity android:name=".userInteractions.UserInteractionsActivity" />
         <activity android:name=".webView.WebViewActivity" />
         <activity android:name=".multipleLanguage.MultipleLanguageActivity" />
+        <activity android:name=".fragments.FragmentsActivity" />
+        <activity android:name=".dialogFragment.DialogFragmentActivity" />
+        <activity android:name=".listFragment.ListFragmentMainActivity" />
+        <activity android:name=".listFragment.ListFragmentSecondActivity" />
+        <activity android:name=".sendingDataBetweenActivities.SendingDataBetweenActivitiesMainActivity" />
+        <activity android:name=".sendingDataBetweenActivities.SendingDataBetweenActivitiesSecondActivity" />
     </application>
 
 </manifest>

@@ -10,16 +10,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.igorcodes.kotlinbasics.data.Lesson
 import ru.igorcodes.kotlinbasics.data.LessonsData
 import ru.igorcodes.kotlinbasics.databinding.ActivityMainBinding
+import ru.igorcodes.kotlinbasics.dialogFragment.DialogFragmentActivity
+import ru.igorcodes.kotlinbasics.fragments.FragmentsActivity
 import ru.igorcodes.kotlinbasics.gridView.GridViewActivity
 import ru.igorcodes.kotlinbasics.intent.IntentMainActivity
 import ru.igorcodes.kotlinbasics.layouts.LayoutsActivity
 import ru.igorcodes.kotlinbasics.lifeCycles.LifeCyclesActivity
+import ru.igorcodes.kotlinbasics.listFragment.ListFragmentMainActivity
 import ru.igorcodes.kotlinbasics.listView.ListViewActivity
 import ru.igorcodes.kotlinbasics.multipleLanguage.MultipleLanguageActivity
 import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
 import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
 import ru.igorcodes.kotlinbasics.recyclerView.RecyclerViewActivity
 import ru.igorcodes.kotlinbasics.scrollView.ScrollViewActivity
+import ru.igorcodes.kotlinbasics.sendingDataBetweenActivities.SendingDataBetweenActivitiesMainActivity
 import ru.igorcodes.kotlinbasics.services.ServicesActivity
 import ru.igorcodes.kotlinbasics.topAppBar.TopAppBarActivity
 import ru.igorcodes.kotlinbasics.userInteractions.UserInteractionsActivity
@@ -71,10 +75,10 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.USER_INTERACTIONS -> createIntent(UserInteractionsActivity())
             Lesson.WEB_VIEW -> createIntent(WebViewActivity())
             Lesson.MULTIPLE_LANGUAGE -> createIntent(MultipleLanguageActivity())
-            Lesson.FRAGMENTS -> TODO()
-            Lesson.DIALOG_FRAGMENT -> TODO()
-            Lesson.LIST_FRAGMENT -> TODO()
-            Lesson.SENDING_DATA_BETWEEN_ACTIVITIES -> TODO()
+            Lesson.FRAGMENTS -> createIntent(FragmentsActivity())
+            Lesson.DIALOG_FRAGMENT -> createIntent(DialogFragmentActivity())
+            Lesson.LIST_FRAGMENT -> createIntent(ListFragmentMainActivity())
+            Lesson.SENDING_DATA_BETWEEN_ACTIVITIES -> createIntent(SendingDataBetweenActivitiesMainActivity())
         }
     }
 
