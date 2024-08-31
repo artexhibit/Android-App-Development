@@ -1,7 +1,6 @@
 package ru.igorcodes.kotlinbasics
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ScrollView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,7 +22,11 @@ import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
 import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
 import ru.igorcodes.kotlinbasics.recyclerView.RecyclerViewActivity
 import ru.igorcodes.kotlinbasics.scrollView.ScrollViewActivity
+import ru.igorcodes.kotlinbasics.sendSMS.SendSMSActivity
 import ru.igorcodes.kotlinbasics.sendingDataBetweenActivities.SendingDataBetweenActivitiesMainActivity
+import ru.igorcodes.kotlinbasics.sendingDataFromActivityToFragment.SendingDataFromActivityToFragmentActivity
+import ru.igorcodes.kotlinbasics.sendingDataFromFragmentToActivity.SendingDataFromFragmentToActivityActivity
+import ru.igorcodes.kotlinbasics.sendingDataFromFragmentToFragment.SendingDataFromFragmentToFragmentActivity
 import ru.igorcodes.kotlinbasics.services.ServicesActivity
 import ru.igorcodes.kotlinbasics.topAppBar.TopAppBarActivity
 import ru.igorcodes.kotlinbasics.userInteractions.UserInteractionsActivity
@@ -79,6 +82,10 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.DIALOG_FRAGMENT -> createIntent(DialogFragmentActivity())
             Lesson.LIST_FRAGMENT -> createIntent(ListFragmentMainActivity())
             Lesson.SENDING_DATA_BETWEEN_ACTIVITIES -> createIntent(SendingDataBetweenActivitiesMainActivity())
+            Lesson.SENDING_DATA_FROM_ACTIVITY_TO_FRAGMENT -> createIntent(SendingDataFromActivityToFragmentActivity())
+            Lesson.SENDING_DATA_FROM_FRAGMENT_TO_ACTIVITY -> createIntent(SendingDataFromFragmentToActivityActivity())
+            Lesson.SENDING_DATA_FROM_FRAGMENT_TO_FRAGMENT -> createIntent(SendingDataFromFragmentToFragmentActivity())
+            Lesson.SEND_SMS -> createIntent(SendSMSActivity())
         }
     }
 

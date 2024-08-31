@@ -1,0 +1,38 @@
+package ru.igorcodes.kotlinbasics.sendingDataFromFragmentToFragment
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import ru.igorcodes.kotlinbasics.R
+
+class SendingDataFromFragmentToFragmentFirstFragment: Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_first_sending_data_from_fragment_to_fragment, container, false)
+        val name: EditText = view.findViewById(R.id.editTextName)
+        val send: Button = view.findViewById(R.id.buttonSend)
+
+        send.setOnClickListener {
+            val username = name.text.toString()
+            val bundle = Bundle()
+            bundle.putString("username", username)
+
+            val sendingDataFromFragmentToFragmentSecondFragment = SendingDataFromFragmentToFragmentSecondFragment()
+            sendingDataFromFragmentToFragmentSecondFragment.arguments = bundle
+
+            val fragmentManager: FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frame, sendingDataFromFragmentToFragmentSecondFragment)
+            fragmentTransaction.commit()
+        }
+        return view
+    }
+}

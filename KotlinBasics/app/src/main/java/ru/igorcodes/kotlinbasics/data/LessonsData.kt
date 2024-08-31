@@ -18,7 +18,11 @@ enum class Lesson(val lessonName: String) {
     FRAGMENTS("Fragments"),
     DIALOG_FRAGMENT("DialogFragment"),
     LIST_FRAGMENT("ListFragment"),
-    SENDING_DATA_BETWEEN_ACTIVITIES("SendingDataBetweenActivities")
+    SENDING_DATA_BETWEEN_ACTIVITIES("SendingDataBetweenActivities"),
+    SENDING_DATA_FROM_ACTIVITY_TO_FRAGMENT("SendingDataFromActivityToFragment"),
+    SENDING_DATA_FROM_FRAGMENT_TO_ACTIVITY("SendingDataFromFragmentToActivity"),
+    SENDING_DATA_FROM_FRAGMENT_TO_FRAGMENT("SendingDataFromFragmentToFragment"),
+    SEND_SMS("SendSMS"),
 }
 
 object LessonsData {
