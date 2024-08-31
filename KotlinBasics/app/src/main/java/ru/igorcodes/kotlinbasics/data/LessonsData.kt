@@ -23,6 +23,7 @@ enum class Lesson(val lessonName: String) {
     SENDING_DATA_FROM_FRAGMENT_TO_ACTIVITY("SendingDataFromFragmentToActivity"),
     SENDING_DATA_FROM_FRAGMENT_TO_FRAGMENT("SendingDataFromFragmentToFragment"),
     SEND_SMS("SendSMS"),
+    SEND_EMAL("SendEmail")
 }
 
 object LessonsData {

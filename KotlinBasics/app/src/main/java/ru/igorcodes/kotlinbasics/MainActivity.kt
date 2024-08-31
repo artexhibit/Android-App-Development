@@ -22,6 +22,7 @@ import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
 import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
 import ru.igorcodes.kotlinbasics.recyclerView.RecyclerViewActivity
 import ru.igorcodes.kotlinbasics.scrollView.ScrollViewActivity
+import ru.igorcodes.kotlinbasics.sendEmail.SendEmailActivity
 import ru.igorcodes.kotlinbasics.sendSMS.SendSMSActivity
 import ru.igorcodes.kotlinbasics.sendingDataBetweenActivities.SendingDataBetweenActivitiesMainActivity
 import ru.igorcodes.kotlinbasics.sendingDataFromActivityToFragment.SendingDataFromActivityToFragmentActivity
@@ -86,6 +87,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.SENDING_DATA_FROM_FRAGMENT_TO_ACTIVITY -> createIntent(SendingDataFromFragmentToActivityActivity())
             Lesson.SENDING_DATA_FROM_FRAGMENT_TO_FRAGMENT -> createIntent(SendingDataFromFragmentToFragmentActivity())
             Lesson.SEND_SMS -> createIntent(SendSMSActivity())
+            Lesson.SEND_EMAL -> createIntent(SendEmailActivity())
         }
     }
 
