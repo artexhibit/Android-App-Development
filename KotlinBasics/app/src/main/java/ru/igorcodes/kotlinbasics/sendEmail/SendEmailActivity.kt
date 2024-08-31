@@ -11,11 +11,12 @@ import ru.igorcodes.kotlinbasics.databinding.ActivitySendEmailBinding
 
 class SendEmailActivity: AppCompatActivity() {
 
-    lateinit var sendEmailBinding: ActivitySendEmailBinding
+    private lateinit var sendEmailBinding: ActivitySendEmailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         sendEmailBinding = ActivitySendEmailBinding.inflate(layoutInflater)
         val view = sendEmailBinding.root
         setContentView(view)
