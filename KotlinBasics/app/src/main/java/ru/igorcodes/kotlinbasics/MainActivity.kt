@@ -30,6 +30,7 @@ import ru.igorcodes.kotlinbasics.sendingDataFromActivityToFragment.SendingDataFr
 import ru.igorcodes.kotlinbasics.sendingDataFromFragmentToActivity.SendingDataFromFragmentToActivityActivity
 import ru.igorcodes.kotlinbasics.sendingDataFromFragmentToFragment.SendingDataFromFragmentToFragmentActivity
 import ru.igorcodes.kotlinbasics.services.ServicesActivity
+import ru.igorcodes.kotlinbasics.speechToText.SpeechToTextActivity
 import ru.igorcodes.kotlinbasics.topAppBar.TopAppBarActivity
 import ru.igorcodes.kotlinbasics.userInteractions.UserInteractionsActivity
 import ru.igorcodes.kotlinbasics.webView.WebViewActivity
@@ -90,6 +91,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.SEND_SMS -> createIntent(SendSMSActivity())
             Lesson.SEND_EMAIL -> createIntent(SendEmailActivity())
             Lesson.MAKE_CALL -> createIntent(MakeCallActivity())
+            Lesson.SPEECH_TO_TEXT -> createIntent(SpeechToTextActivity())
         }
     }
 

@@ -24,7 +24,8 @@ enum class Lesson(val lessonName: String) {
     SENDING_DATA_FROM_FRAGMENT_TO_FRAGMENT("SendingDataFromFragmentToFragment"),
     SEND_SMS("SendSMS"),
     SEND_EMAIL("SendEmail"),
-    MAKE_CALL("MakeCall")
+    MAKE_CALL("MakeCall"),
+    SPEECH_TO_TEXT("SpeechToText")
 }
 
 object LessonsData {
