@@ -17,6 +17,7 @@ import ru.igorcodes.kotlinbasics.layouts.LayoutsActivity
 import ru.igorcodes.kotlinbasics.lifeCycles.LifeCyclesActivity
 import ru.igorcodes.kotlinbasics.listFragment.ListFragmentMainActivity
 import ru.igorcodes.kotlinbasics.listView.ListViewActivity
+import ru.igorcodes.kotlinbasics.localNotification.LocalNotificationActivity
 import ru.igorcodes.kotlinbasics.makeCall.MakeCallActivity
 import ru.igorcodes.kotlinbasics.multipleLanguage.MultipleLanguageActivity
 import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
@@ -92,6 +93,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.SEND_EMAIL -> createIntent(SendEmailActivity())
             Lesson.MAKE_CALL -> createIntent(MakeCallActivity())
             Lesson.SPEECH_TO_TEXT -> createIntent(SpeechToTextActivity())
+            Lesson.LOCAL_NOTIFICATION -> createIntent(LocalNotificationActivity())
         }
     }
 
