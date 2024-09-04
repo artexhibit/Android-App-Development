@@ -26,7 +26,8 @@ enum class Lesson(val lessonName: String) {
     SEND_EMAIL("SendEmail"),
     MAKE_CALL("MakeCall"),
     SPEECH_TO_TEXT("SpeechToText"),
-    LOCAL_NOTIFICATION("LocalNotification")
+    LOCAL_NOTIFICATION("LocalNotification"),
+    PERIODIC_NOTIFICATION("PeriodicNotification")
 }
 
 object LessonsData {

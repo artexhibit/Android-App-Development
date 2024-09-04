@@ -24,6 +24,8 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
+        <receiver android:name=".periodicNotification.NotificationReceiver"/>
+
         <activity
             android:name=".sendEmail.SendEmailActivity"
             android:exported="false">
@@ -82,6 +84,7 @@
         <activity android:name=".makeCall.MakeCallActivity" />
         <activity android:name=".speechToText.SpeechToTextActivity" />
         <activity android:name=".localNotification.LocalNotificationActivity" />
+        <activity android:name=".periodicNotification.PeriodicNotificationActivity" />
     </application>
 
 </manifest>

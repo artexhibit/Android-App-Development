@@ -54,7 +54,7 @@ class LocalNotificationActivity: AppCompatActivity() {
     }
 
     fun startNotification(){
-        val channel = NotificationChannel(CHANNEL_ID,"1", NotificationManager.IMPORTANCE_HIGH)
+        val channel = NotificationChannel(CHANNEL_ID,CHANNEL_ID, NotificationManager.IMPORTANCE_HIGH)
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.createNotificationChannel(channel)
 
