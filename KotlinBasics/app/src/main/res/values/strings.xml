@@ -9,6 +9,8 @@
     <string name="toast">This is a toast message</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="big_text">Android app development involves creating software applications for devices running the Android operating system. Developers use programming languages like Kotlin and Java, along with tools such as Android Studio, to build, test, and deploy apps. The process includes designing user interfaces, managing app lifecycle, and ensuring compatibility across different Android devices and versions.</string>
+
     <string-array name="countries">
         <item>England</item>
         <item>Belgium</item>

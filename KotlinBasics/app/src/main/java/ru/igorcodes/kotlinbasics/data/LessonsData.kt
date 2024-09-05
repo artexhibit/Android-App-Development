@@ -27,7 +27,8 @@ enum class Lesson(val lessonName: String) {
     MAKE_CALL("MakeCall"),
     SPEECH_TO_TEXT("SpeechToText"),
     LOCAL_NOTIFICATION("LocalNotification"),
-    PERIODIC_NOTIFICATION("PeriodicNotification")
+    PERIODIC_NOTIFICATION("PeriodicNotification"),
+    NOTIFICATION_PROCEDURES("NotificationProcedures"),
 }
 
 object LessonsData {

@@ -21,6 +21,7 @@ import ru.igorcodes.kotlinbasics.localNotification.LocalNotificationActivity
 import ru.igorcodes.kotlinbasics.makeCall.MakeCallActivity
 import ru.igorcodes.kotlinbasics.multipleLanguage.MultipleLanguageActivity
 import ru.igorcodes.kotlinbasics.myFirstProject.MyFirstProjectActivity
+import ru.igorcodes.kotlinbasics.notificationProcedures.NotificationProceduresActivity
 import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
 import ru.igorcodes.kotlinbasics.periodicNotification.PeriodicNotificationActivity
 import ru.igorcodes.kotlinbasics.recyclerView.RecyclerViewActivity
@@ -96,6 +97,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.SPEECH_TO_TEXT -> createIntent(SpeechToTextActivity())
             Lesson.LOCAL_NOTIFICATION -> createIntent(LocalNotificationActivity())
             Lesson.PERIODIC_NOTIFICATION -> createIntent(PeriodicNotificationActivity())
+            Lesson.NOTIFICATION_PROCEDURES -> createIntent(NotificationProceduresActivity())
         }
     }
 
