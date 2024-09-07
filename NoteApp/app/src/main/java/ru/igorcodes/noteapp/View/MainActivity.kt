@@ -4,9 +4,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import ru.igorcodes.noteapp.NoteApplication
 import ru.igorcodes.noteapp.R
+import ru.igorcodes.noteapp.ViewModel.NoteViewModel
+import ru.igorcodes.noteapp.ViewModel.NoteViewModelFactory
 
 class MainActivity: AppCompatActivity() {
+
+    lateinit var noteViewModel: NoteViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -16,5 +24,12 @@ class MainActivity: AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val viewModelFactory = NoteViewModelFactory((application as NoteApplication).repository)
+        noteViewModel = ViewModelProvider(this, viewModelFactory).get(NoteViewModel::class.java)
+
+        noteViewModel.myAllNotes.observe(this, Observer { notes ->
+            //updateUI
+        })
     }
 }
