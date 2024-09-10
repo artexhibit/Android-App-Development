@@ -30,7 +30,8 @@ import ru.igorcodes.noteapp.ViewModel.NoteViewModelFactory
 class MainActivity : AppCompatActivity() {
 
     lateinit var noteViewModel: NoteViewModel
-    lateinit var addActivityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var addActivityResultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var updateActivityResultLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val noteAdapter = NoteAdapter()
+        val noteAdapter = NoteAdapter(this)
         recyclerView.adapter = noteAdapter
 
         val viewModelFactory = NoteViewModelFactory((application as NoteApplication).repository)
@@ -90,6 +91,22 @@ class MainActivity : AppCompatActivity() {
 
                 val note = Note(noteTitle, noteDescription)
                 noteViewModel.insert(note)
+            }
+        })
+
+        updateActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { resultUpdateNote ->
+            val resultCode = resultUpdateNote.resultCode
+            val data = resultUpdateNote.data
+
+            if (resultCode == RESULT_OK && data != null) {
+                val updatedTitle: String = data.getStringExtra("updatedTitle").toString()
+                val updatedDescription: String = data.getStringExtra("updatedDescription").toString()
+                val noteID = data.getIntExtra("noteID", -1)
+
+                val newNote = Note(updatedTitle, updatedDescription)
+                newNote.id = noteID
+
+                noteViewModel.uodate(newNote)
             }
         })
     }

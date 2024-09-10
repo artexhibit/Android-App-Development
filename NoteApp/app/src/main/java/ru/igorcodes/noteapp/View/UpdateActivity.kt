@@ -12,37 +12,40 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
 import ru.igorcodes.noteapp.R
-import java.sql.Savepoint
 
-class NoteAddActivity: AppCompatActivity() {
+class UpdateActivity: AppCompatActivity() {
 
     private lateinit var editTextTitle: EditText
     private lateinit var editTextDescription: EditText
     private lateinit var buttonCancel: Button
     private lateinit var buttonSave: Button
 
+    private var currentID = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_note_add)
+        setContentView(R.layout.activity_update)
 
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimary)
 
-        val toolbar = findViewById<MaterialToolbar>(R.id.newNoteMaterialToolbar)
+        val toolbar = findViewById<MaterialToolbar>(R.id.updateNoteMaterialToolbar)
         setSupportActionBar(toolbar)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.updateMain)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        editTextTitle = findViewById(R.id.editTextTitle)
-        editTextDescription = findViewById(R.id.editTextDescription)
-        buttonCancel = findViewById(R.id.buttonCancel)
-        buttonSave = findViewById(R.id.buttonSave)
+        editTextTitle = findViewById(R.id.editTextTitleUpdate)
+        editTextDescription = findViewById(R.id.editTextDescriptionUpdate)
+        buttonCancel = findViewById(R.id.buttonCancelUpdate)
+        buttonSave = findViewById(R.id.buttonSaveUpdate)
+
+        getAndSetData()
 
         buttonCancel.setOnClickListener {
             Toast.makeText(applicationContext, "Nothing saved", Toast.LENGTH_SHORT).show()
@@ -50,19 +53,32 @@ class NoteAddActivity: AppCompatActivity() {
         }
 
         buttonSave.setOnClickListener {
-            saveNote()
+            updateNote()
         }
     }
 
-    private fun saveNote() {
-        val noteTitle: String = editTextTitle.text.toString()
-        val noteDescription: String = editTextDescription.text.toString()
+    private fun updateNote() {
+        val updatedTitle = editTextTitle.text.toString()
+        val updatedDescription = editTextDescription.text.toString()
 
         val intent = Intent()
-        intent.putExtra("title", noteTitle)
-        intent.putExtra("description", noteDescription)
-        setResult(RESULT_OK, intent)
-        finish()
+        intent.putExtra("updatedTitle", updatedTitle)
+        intent.putExtra("updatedDescription", updatedDescription)
+
+        if (currentID != -1) {
+            intent.putExtra("noteID", currentID)
+            setResult(RESULT_OK, intent)
+            finish()
+        }
+    }
+
+    fun getAndSetData() {
+        val currentTitle = intent.getStringExtra("currentTitle")
+        val currentDescription = intent.getStringExtra("currentDescription")
+        currentID = intent.getIntExtra("currentID", -1)
+
+        editTextTitle.setText(currentTitle)
+        editTextDescription.setText(currentDescription)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -6,28 +6,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context=".View.NoteAddActivity">
+    tools:context=".View.UpdateActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/newNoteMaterialToolbar"
+        android:id="@+id/updateNoteMaterialToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIconTint="@color/white"
-        app:title="Add Note"
+        app:title="Update Note"
         app:titleTextColor="@color/white" />
 
     <LinearLayout
-        android:id="@+id/main"
+        android:id="@+id/updateMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editTextTitle"
+            android:id="@+id/editTextTitleUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -36,7 +36,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editTextDescription"
+            android:id="@+id/editTextDescriptionUpdate"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:ems="10"
@@ -51,7 +51,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonCancel"
+                android:id="@+id/buttonCancelUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -60,7 +60,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/buttonSave"
+                android:id="@+id/buttonSaveUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"

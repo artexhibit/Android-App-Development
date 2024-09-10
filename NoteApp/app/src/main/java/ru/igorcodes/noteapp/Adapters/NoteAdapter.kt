@@ -1,4 +1,5 @@
 package ru.igorcodes.noteapp.Adapters
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.*
 import ru.igorcodes.noteapp.Model.Note
 import ru.igorcodes.noteapp.R
+import ru.igorcodes.noteapp.View.MainActivity
+import ru.igorcodes.noteapp.View.UpdateActivity
 
-class NoteAdapter: Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(private val activity: MainActivity): Adapter<NoteAdapter.NoteViewHolder>() {
 
     var notes: List<Note> = ArrayList()
 
@@ -30,8 +33,20 @@ class NoteAdapter: Adapter<NoteAdapter.NoteViewHolder>() {
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         var currentNote: Note = notes[position]
+
         holder.textViewTitle.text = currentNote.title
         holder.textViewDescription.text = currentNote.description
+
+        holder.cardView.setOnClickListener {
+            val intent = Intent(activity, UpdateActivity::class.java)
+
+            intent.putExtra("currentTitle", currentNote.title)
+            intent.putExtra("currentDescription", currentNote.description)
+            intent.putExtra("currentID", currentNote.id)
+
+            //activity result launcher
+            activity.updateActivityResultLauncher.launch(intent)
+        }
     }
 
     fun setNote(myNotes: List<Note>) {
