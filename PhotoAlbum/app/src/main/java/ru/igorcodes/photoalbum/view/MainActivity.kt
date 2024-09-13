@@ -7,7 +7,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import ru.igorcodes.photoalbum.R
+import ru.igorcodes.photoalbum.adapter.MyImagesAdapter
 import ru.igorcodes.photoalbum.databinding.ActivityMainBinding
 import ru.igorcodes.photoalbum.viewModel.MyImagesViewModel
 
@@ -15,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var myImagesViewModel: MyImagesViewModel
     lateinit var mainBinding: ActivityMainBinding
+    lateinit var myImagesAdapter: MyImagesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +32,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         myImagesViewModel = ViewModelProvider(this)[MyImagesViewModel::class.java]
+
+        mainBinding.recyclerView.layoutManager = LinearLayoutManager(this)
+        myImagesAdapter = MyImagesAdapter()
+        mainBinding.recyclerView.adapter = myImagesAdapter
+
         myImagesViewModel.getAllImages().observe(this, Observer { images ->
             //updateUI
+            myImagesAdapter.setImage(images)
         })
 
         mainBinding.floatingActionButton.setOnClickListener {
