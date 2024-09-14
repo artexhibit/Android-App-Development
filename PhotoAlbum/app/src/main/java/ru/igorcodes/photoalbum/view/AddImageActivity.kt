@@ -7,6 +7,7 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore.*
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -14,15 +15,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import ru.igorcodes.photoalbum.R
 import ru.igorcodes.photoalbum.databinding.ActivityAddImageBinding
+import ru.igorcodes.photoalbum.model.MyImages
 import ru.igorcodes.photoalbum.utile.ControlPermission
+import ru.igorcodes.photoalbum.utile.ConvertImage
+import ru.igorcodes.photoalbum.viewModel.MyImagesViewModel
 
 class AddImageActivity: AppCompatActivity() {
 
     lateinit var addImageBinding: ActivityAddImageBinding
     lateinit var activityResultLauncherForSelectImage: ActivityResultLauncher<Intent>
     lateinit var selectedImage: Bitmap
+    lateinit var myImagesViewModel: MyImagesViewModel
+    private var control = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +40,7 @@ class AddImageActivity: AppCompatActivity() {
         addImageBinding = ActivityAddImageBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(addImageBinding.root)
+        myImagesViewModel = ViewModelProvider(this)[MyImagesViewModel::class.java]
 
         registerActivityForSelectImage()
 
@@ -53,7 +64,26 @@ class AddImageActivity: AppCompatActivity() {
         }
 
         addImageBinding.buttonAdd.setOnClickListener {
+            if (control) {
+                addImageBinding.buttonAdd.text = "Uploading, please wait"
+                addImageBinding.buttonAdd.isEnabled = false
 
+                GlobalScope.launch(Dispatchers.IO) {
+                    val title = addImageBinding.editTextAddTitle.text.toString()
+                    val description = addImageBinding.editTextAddDescription.text.toString()
+                    val imageAsString = ConvertImage.convertToString(selectedImage)
+
+                    if (imageAsString != null) {
+                        myImagesViewModel.insert(MyImages(title, description, imageAsString))
+                        control = false
+                        finish()
+                    } else {
+                        Toast.makeText(applicationContext, "There is a problem, select a new image", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } else {
+                Toast.makeText(applicationContext, "Please select a photo", Toast.LENGTH_SHORT).show()
+            }
         }
 
         addImageBinding.toolbarAddImage.setNavigationOnClickListener { finish() }
@@ -75,6 +105,7 @@ class AddImageActivity: AppCompatActivity() {
                         Images.Media.getBitmap(this.contentResolver, imageUri)
                     }
                     addImageBinding.imageViewAddImage.setImageBitmap(selectedImage)
+                    control = true
                 }
             }
         }

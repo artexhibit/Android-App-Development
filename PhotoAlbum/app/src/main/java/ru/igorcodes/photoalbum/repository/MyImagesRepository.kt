@@ -30,4 +30,8 @@ class MyImagesRepository(application: Application) {
     fun getAllImages() : LiveData<List<MyImages>> {
         return imagesList
     }
+
+    suspend fun getItemByID(id: Int) : MyImages {
+        return myImagesDAO.getItemByID(id)
+    }
 }

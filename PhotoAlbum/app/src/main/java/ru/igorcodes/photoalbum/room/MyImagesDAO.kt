@@ -20,4 +20,7 @@ interface MyImagesDAO {
 
     @Query("SELECT * FROM my_images ORDER BY imageID ASC")
     fun getAllImages() : LiveData<List<MyImages>>
+
+    @Query("SELECT * FROM my_images WHERE imageID = :id")
+    suspend fun getItemByID(id: Int) : MyImages
 }

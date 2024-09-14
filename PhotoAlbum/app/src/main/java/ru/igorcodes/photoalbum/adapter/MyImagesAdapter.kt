@@ -1,13 +1,17 @@
 package ru.igorcodes.photoalbum.adapter
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.igorcodes.photoalbum.databinding.ImageItemBinding
 import ru.igorcodes.photoalbum.model.MyImages
 import ru.igorcodes.photoalbum.utile.ConvertImage
+import ru.igorcodes.photoalbum.view.AddImageActivity
+import ru.igorcodes.photoalbum.view.UpdateImageActivity
 
-class MyImagesAdapter: RecyclerView.Adapter<MyImagesAdapter.MyImagesViewHolder>() {
+class MyImagesAdapter(private val activity: Activity): RecyclerView.Adapter<MyImagesAdapter.MyImagesViewHolder>() {
 
     var imageList: List<MyImages> = ArrayList()
 
@@ -37,6 +41,16 @@ class MyImagesAdapter: RecyclerView.Adapter<MyImagesAdapter.MyImagesViewHolder>(
 
             val imageAsBitmap = ConvertImage.convertToBitmap(myImage.imageAsString)
             itemBinding.imageView.setImageBitmap(imageAsBitmap)
+
+            itemBinding.cardView.setOnClickListener {
+                val intent = Intent(activity, UpdateImageActivity::class.java)
+                intent.putExtra("id", myImage.imageID)
+                activity.startActivity(intent)
+            }
         }
+    }
+
+    fun returnItemAtPosition(position: Int) : MyImages {
+        return imageList[position]
     }
 }
