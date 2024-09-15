@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "286170429419",
+    "firebase_url": "https://examplekotlin-93c85-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "examplekotlin-93c85",
+    "storage_bucket": "examplekotlin-93c85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286170429419:android:ed18b0f7c9f43232e98bae",
+        "android_client_info": {
+          "package_name": "ru.igorcodes.kotlinbasics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfQL3GuQ2VQWQga0ZYvXy20WsneRxQ1tk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286170429419:android:37381852f1596b36e98bae",
+        "android_client_info": {
+          "package_name": "ru.igorcodes.kotlinbasics.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfQL3GuQ2VQWQga0ZYvXy20WsneRxQ1tk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -10,6 +10,7 @@ import ru.igorcodes.kotlinbasics.data.Lesson
 import ru.igorcodes.kotlinbasics.data.LessonsData
 import ru.igorcodes.kotlinbasics.databinding.ActivityMainBinding
 import ru.igorcodes.kotlinbasics.dialogFragment.DialogFragmentActivity
+import ru.igorcodes.kotlinbasics.firebase.FirebaseActivity
 import ru.igorcodes.kotlinbasics.fragments.FragmentsActivity
 import ru.igorcodes.kotlinbasics.gridView.GridViewActivity
 import ru.igorcodes.kotlinbasics.intent.IntentMainActivity
@@ -98,6 +99,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.LOCAL_NOTIFICATION -> createIntent(LocalNotificationActivity())
             Lesson.PERIODIC_NOTIFICATION -> createIntent(PeriodicNotificationActivity())
             Lesson.NOTIFICATION_PROCEDURES -> createIntent(NotificationProceduresActivity())
+            Lesson.FIREBASE -> createIntent(FirebaseActivity())
         }
     }
 

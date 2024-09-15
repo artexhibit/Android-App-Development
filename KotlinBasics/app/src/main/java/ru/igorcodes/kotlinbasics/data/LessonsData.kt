@@ -29,6 +29,7 @@ enum class Lesson(val lessonName: String) {
     LOCAL_NOTIFICATION("LocalNotification"),
     PERIODIC_NOTIFICATION("PeriodicNotification"),
     NOTIFICATION_PROCEDURES("NotificationProcedures"),
+    FIREBASE("Firebase"),
 }
 
 object LessonsData {
