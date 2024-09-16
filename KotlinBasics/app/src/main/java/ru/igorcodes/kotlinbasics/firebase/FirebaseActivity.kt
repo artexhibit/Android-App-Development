@@ -1,61 +1,68 @@
 package ru.igorcodes.kotlinbasics.firebase
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import ru.igorcodes.kotlinbasics.R
+import ru.igorcodes.kotlinbasics.databinding.ActivityFirebaseBinding
 
 class FirebaseActivity: AppCompatActivity() {
 
-    private lateinit var editTextName: EditText
-    private lateinit var buttonSend: Button
-    private lateinit var textViewName: TextView
+    private lateinit var mainBinding: ActivityFirebaseBinding
 
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-    private val reference: DatabaseReference = database.reference.child("Users")
-    private val reference2: DatabaseReference = database.reference
+    private val myReference: DatabaseReference = database.reference.child("MyUsers")
+
+    private val userList = ArrayList<Users>()
+    private lateinit var usersAdapter: UsersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_firebase)
+
+        mainBinding = ActivityFirebaseBinding.inflate(layoutInflater)
+        val view = mainBinding.root
+        setContentView(view)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        editTextName = findViewById(R.id.editTextName)
-        buttonSend = findViewById(R.id.buttonSend)
-        textViewName = findViewById(R.id.textViewName)
-
-        getDataFromFireBaseRealtimeDatabase()
-
-        buttonSend.setOnClickListener {
-            val userName = editTextName.text.toString()
-            reference.child("userName").setValue(userName)
+        mainBinding.floatingActionButton.setOnClickListener {
+            val intent = Intent(this, FirebaseAddUserActivity::class.java)
+            startActivity(intent)
         }
+        retrieveDataFromDatabase()
     }
 
-    private fun getDataFromFireBaseRealtimeDatabase() {
-        reference2.addValueEventListener(object: ValueEventListener{
+    private fun retrieveDataFromDatabase() {
+        myReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-               val realName = snapshot.child("Users").child("name").value as String
-                textViewName.text = realName
+                userList.clear()
+
+                for (eachUser in snapshot.children) {
+                   val user = eachUser.getValue(Users::class.java)
+
+                    if (user != null) { userList.add(user) }
+
+                    usersAdapter = UsersAdapter(this@FirebaseActivity, userList)
+                    mainBinding.recyclerView.layoutManager = LinearLayoutManager(this@FirebaseActivity)
+                    mainBinding.recyclerView.adapter = usersAdapter
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(applicationContext, "Error retrieving data from database", Toast.LENGTH_SHORT).show()
+                TODO("Not yet implemented")
             }
         })
     }

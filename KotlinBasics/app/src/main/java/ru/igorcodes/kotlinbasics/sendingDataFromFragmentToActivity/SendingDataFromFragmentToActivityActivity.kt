@@ -24,7 +24,7 @@ class SendingDataFromFragmentToActivityActivity: AppCompatActivity() {
             insets
         }
 
-        name = findViewById(R.id.textViewName)
+        name = findViewById(R.id.textViewFirebaseName)
         email = findViewById(R.id.textViewEmail)
 
         val fragmentManager: FragmentManager = supportFragmentManager

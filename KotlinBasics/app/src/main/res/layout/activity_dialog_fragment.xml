@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewFirebaseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonShow" />
 
     <TextView
-        android:id="@+id/textViewAge"
+        android:id="@+id/textViewFirebaseAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -43,5 +43,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewFirebaseName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

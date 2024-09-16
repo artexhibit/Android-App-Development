@@ -23,7 +23,7 @@ class SendingDataBetweenActivitiesSecondActivity: AppCompatActivity() {
             insets
         }
 
-        tvName = findViewById(R.id.textViewName)
+        tvName = findViewById(R.id.textViewFirebaseName)
         tvEmail = findViewById(R.id.textViewEmail)
         tvPhone = findViewById(R.id.textViewPhone)
 

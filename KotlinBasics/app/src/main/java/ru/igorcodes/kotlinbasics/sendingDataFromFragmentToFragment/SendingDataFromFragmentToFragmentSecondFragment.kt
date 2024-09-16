@@ -14,7 +14,7 @@ class SendingDataFromFragmentToFragmentSecondFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_second_sending_data_from_fragment_to_fragment, container, false)
-        val name: TextView = view.findViewById(R.id.textViewName)
+        val name: TextView = view.findViewById(R.id.textViewFirebaseName)
 
         name.text = arguments?.getString("username").toString()
         return view

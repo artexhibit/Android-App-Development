@@ -26,8 +26,8 @@ class DialogFragmentActivity: AppCompatActivity() {
         }
 
         show = findViewById(R.id.buttonShow)
-        name = findViewById(R.id.textViewName)
-        age = findViewById(R.id.textViewAge)
+        name = findViewById(R.id.textViewFirebaseName)
+        age = findViewById(R.id.textViewFirebaseAge)
 
         show.setOnClickListener {
             val fragmentManager: FragmentManager = supportFragmentManager

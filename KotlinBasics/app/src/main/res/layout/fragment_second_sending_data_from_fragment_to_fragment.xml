@@ -23,7 +23,7 @@
         tools:text="Second Fragment" />
 
     <TextView
-        android:id="@+id/textViewName"
+        android:id="@+id/textViewFirebaseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

@@ -89,6 +89,8 @@
         <activity android:name=".periodicNotification.PeriodicNotificationActivity" />
         <activity android:name=".notificationProcedures.NotificationProceduresActivity" />
         <activity android:name=".firebase.FirebaseActivity" />
+        <activity android:name=".firebase.FirebaseAddUserActivity" />
+        <activity android:name=".firebase.FirebaseUpdateUserActivity" />
     </application>
 
 </manifest>
