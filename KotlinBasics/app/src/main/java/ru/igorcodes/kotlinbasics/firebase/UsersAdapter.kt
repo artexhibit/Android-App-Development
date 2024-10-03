@@ -1,5 +1,6 @@
 package ru.igorcodes.kotlinbasics.firebase
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,5 +23,15 @@ class UsersAdapter(var context: Context, var userList: ArrayList<Users>): Recycl
         holder.adapterBinding.textViewFirebaseName.text = userList[position].userName
         holder.adapterBinding.textViewFirebaseAge.text = userList[position].userAge.toString()
         holder.adapterBinding.textViewFirebaseEmail.text = userList[position].userEmail
+
+        holder.adapterBinding.linearLayout.setOnClickListener {
+            val intent = Intent(context, FirebaseUpdateUserActivity::class.java)
+            intent.putExtra("id", userList[position].userID)
+            intent.putExtra("name", userList[position].userName)
+            intent.putExtra("age", userList[position].userAge)
+            intent.putExtra("email", userList[position].userEmail)
+
+            context.startActivity(intent)
+        }
     }
 }
