@@ -1,11 +1,18 @@
 package ru.igorcodes.kotlinbasics.firebase
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -31,6 +38,7 @@ class FirebaseActivity: AppCompatActivity() {
         mainBinding = ActivityFirebaseBinding.inflate(layoutInflater)
         val view = mainBinding.root
         setContentView(view)
+        setSupportActionBar(mainBinding.materialToolbarFirebase)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -42,6 +50,22 @@ class FirebaseActivity: AppCompatActivity() {
             val intent = Intent(this, FirebaseAddUserActivity::class.java)
             startActivity(intent)
         }
+        mainBinding.materialToolbarFirebase.setNavigationOnClickListener {
+           finish()
+        }
+
+        ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val id = usersAdapter.getUserID(viewHolder.adapterPosition)
+                myReference.child(id).removeValue()
+                Toast.makeText(applicationContext, "The user was deleted!", Toast.LENGTH_SHORT).show()
+            }
+        }).attachToRecyclerView(mainBinding.recyclerView)
+
         retrieveDataFromDatabase()
     }
 
@@ -65,5 +89,38 @@ class FirebaseActivity: AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.firebase_menu_delete_all, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.deleteAll) {
+            showDialogMessage()
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
+    private fun showDialogMessage() {
+        val dialogMessage = AlertDialog.Builder(this)
+        dialogMessage.setTitle("Delete All Users")
+        dialogMessage.setMessage("If click Yes, all will be deleted. If you want to delete a specific user, you can just swipe right or left on that item")
+
+        dialogMessage.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialogInterface, i ->
+            dialogInterface.cancel()
+        })
+
+        dialogMessage.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+            myReference.removeValue().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    usersAdapter.notifyDataSetChanged()
+                    Toast.makeText(applicationContext, "All users were deleted", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+        dialogMessage.create().show()
     }
 }

@@ -19,6 +19,10 @@ class UsersAdapter(var context: Context, var userList: ArrayList<Users>): Recycl
         return userList.size
     }
 
+    fun getUserID(position: Int) : String {
+        return userList[position].userID
+    }
+
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.adapterBinding.textViewFirebaseName.text = userList[position].userName
         holder.adapterBinding.textViewFirebaseAge.text = userList[position].userAge.toString()
