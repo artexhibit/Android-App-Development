@@ -23,6 +23,12 @@
         android:theme="@style/Theme.KotlinBasics"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".firebase.FirebasePhoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".firebase.FirebaseForgetActivity"
+            android:exported="false" />
 
         <receiver android:name=".periodicNotification.NotificationReceiver" />
         <receiver android:name=".notificationProcedures.Receiver" />
@@ -91,6 +97,11 @@
         <activity android:name=".firebase.FirebaseActivity" />
         <activity android:name=".firebase.FirebaseAddUserActivity" />
         <activity android:name=".firebase.FirebaseUpdateUserActivity" />
+        <activity android:name=".firebase.FirebaseLoginActivity" />
+        <activity
+            android:name=".firebase.FirebaseSignUpActivity"
+            android:exported="false"
+            android:parentActivityName=".firebase.FirebaseLoginActivity" />
     </application>
 
 </manifest>

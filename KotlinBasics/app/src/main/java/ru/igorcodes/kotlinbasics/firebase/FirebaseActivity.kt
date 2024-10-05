@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -85,9 +86,7 @@ class FirebaseActivity: AppCompatActivity() {
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
+            override fun onCancelled(error: DatabaseError) { TODO("Not yet implemented") }
         })
     }
 
@@ -99,6 +98,12 @@ class FirebaseActivity: AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.deleteAll) {
             showDialogMessage()
+        } else if (item.itemId == R.id.signOut) {
+            FirebaseAuth.getInstance().signOut()
+
+            val intent = Intent(this@FirebaseActivity, FirebaseLoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         return super.onOptionsItemSelected(item)
 
