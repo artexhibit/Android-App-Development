@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
@@ -82,7 +81,7 @@ class FirebasePhoneActivity: AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(applicationContext, "The code your entered is incorrect", Toast.LENGTH_SHORT,).show()
+                Toast.makeText(applicationContext, "The code your entered is incorrect", Toast.LENGTH_SHORT).show()
             }
         }
     }
