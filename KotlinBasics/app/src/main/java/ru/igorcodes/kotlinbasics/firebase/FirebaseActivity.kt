@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import ru.igorcodes.kotlinbasics.R
 import ru.igorcodes.kotlinbasics.databinding.ActivityFirebaseBinding
 
@@ -28,8 +30,11 @@ class FirebaseActivity: AppCompatActivity() {
 
     private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
     private val myReference: DatabaseReference = database.reference.child("MyUsers")
+    private val firebaseStorage: FirebaseStorage = FirebaseStorage.getInstance()
+    private val storageReference: StorageReference = firebaseStorage.reference
 
     private val userList = ArrayList<Users>()
+    private val imageNameList = ArrayList<String>()
     private lateinit var usersAdapter: UsersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +67,12 @@ class FirebaseActivity: AppCompatActivity() {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val id = usersAdapter.getUserID(viewHolder.adapterPosition)
+                val imageName = usersAdapter.getImageName(viewHolder.adapterPosition)
+                val imageRef = storageReference.child("images").child(imageName)
+
                 myReference.child(id).removeValue()
+                imageRef.delete()
+
                 Toast.makeText(applicationContext, "The user was deleted!", Toast.LENGTH_SHORT).show()
             }
         }).attachToRecyclerView(mainBinding.recyclerView)
@@ -114,13 +124,31 @@ class FirebaseActivity: AppCompatActivity() {
         dialogMessage.setTitle("Delete All Users")
         dialogMessage.setMessage("If click Yes, all will be deleted. If you want to delete a specific user, you can just swipe right or left on that item")
 
-        dialogMessage.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialogInterface, i ->
+        dialogMessage.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialogInterface, _ ->
             dialogInterface.cancel()
         })
 
-        dialogMessage.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+        dialogMessage.setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ ->
+            myReference.addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (eachUser in snapshot.children) {
+                        val user = eachUser.getValue(Users::class.java)
+
+                        if (user != null) { imageNameList.add(user.imageName) }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
+
             myReference.removeValue().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    for (imageName in imageNameList) {
+                        val imageRef = storageReference.child("images").child(imageName)
+                        imageRef.delete()
+                    }
                     usersAdapter.notifyDataSetChanged()
                     Toast.makeText(applicationContext, "All users were deleted", Toast.LENGTH_SHORT).show()
                 }

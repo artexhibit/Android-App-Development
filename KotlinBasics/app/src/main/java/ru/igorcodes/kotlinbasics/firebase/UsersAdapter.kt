@@ -28,6 +28,10 @@ class UsersAdapter(var context: Context, var userList: ArrayList<Users>): Recycl
         return userList[position].userID
     }
 
+    fun getImageName(position: Int) : String {
+        return userList[position].imageName
+    }
+
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         holder.adapterBinding.textViewFirebaseName.text = userList[position].userName
         holder.adapterBinding.textViewFirebaseAge.text = userList[position].userAge.toString()
