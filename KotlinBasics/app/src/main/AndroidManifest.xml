@@ -11,9 +11,11 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
         tools:ignore="SelectedPhotoAccess" />
 
     <application
@@ -27,21 +29,16 @@
         android:theme="@style/Theme.KotlinBasics"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".firebase.FirebasePhoneActivity"
-            android:exported="false" />
-        <activity
-            android:name=".firebase.FirebaseForgetActivity"
-            android:exported="false" />
 
         <receiver android:name=".periodicNotification.NotificationReceiver" />
         <receiver android:name=".notificationProcedures.Receiver" />
         <receiver android:name=".notificationProcedures.ReceiverDismiss" />
 
-        <service android:name=".firebase.MyFirebaseService"
+        <service
+            android:name=".firebase.MyFirebaseService"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
@@ -113,6 +110,9 @@
         <activity android:name=".firebase.FirebaseAddUserActivity" />
         <activity android:name=".firebase.FirebaseUpdateUserActivity" />
         <activity android:name=".firebase.FirebaseLoginActivity" />
+        <activity android:name=".retrofit.RetrofitMainActivity" />
+        <activity android:name=".firebase.FirebasePhoneActivity" />
+        <activity android:name=".firebase.FirebaseForgetActivity" />
         <activity
             android:name=".firebase.FirebaseSignUpActivity"
             android:exported="false"

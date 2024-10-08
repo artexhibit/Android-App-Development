@@ -27,6 +27,7 @@ import ru.igorcodes.kotlinbasics.notificationProcedures.NotificationProceduresAc
 import ru.igorcodes.kotlinbasics.objectOrientedProgramming.ObjectOrientedProgrammingActivity
 import ru.igorcodes.kotlinbasics.periodicNotification.PeriodicNotificationActivity
 import ru.igorcodes.kotlinbasics.recyclerView.RecyclerViewActivity
+import ru.igorcodes.kotlinbasics.retrofit.RetrofitMainActivity
 import ru.igorcodes.kotlinbasics.scrollView.ScrollViewActivity
 import ru.igorcodes.kotlinbasics.sendEmail.SendEmailActivity
 import ru.igorcodes.kotlinbasics.sendSMS.SendSMSActivity
@@ -101,6 +102,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.PERIODIC_NOTIFICATION -> createIntent(PeriodicNotificationActivity())
             Lesson.NOTIFICATION_PROCEDURES -> createIntent(NotificationProceduresActivity())
             Lesson.FIREBASE -> createIntent(FirebaseLoginActivity())
+            Lesson.RETROFIT -> createIntent(RetrofitMainActivity())
         }
     }
 

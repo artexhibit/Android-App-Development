@@ -30,6 +30,7 @@ enum class Lesson(val lessonName: String) {
     PERIODIC_NOTIFICATION("PeriodicNotification"),
     NOTIFICATION_PROCEDURES("NotificationProcedures"),
     FIREBASE("Firebase"),
+    RETROFIT("Retrofit"),
 }
 
 object LessonsData {
