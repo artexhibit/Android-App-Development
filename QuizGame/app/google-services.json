@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "979905984261",
+    "project_id": "quizgame-562a5",
+    "storage_bucket": "quizgame-562a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:979905984261:android:69521acf9f02b31cece96c",
+        "android_client_info": {
+          "package_name": "ru.igorcodes.quizgame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBw0Mzqmli6aCnNXcIwxz01bFYSs9gr5-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
