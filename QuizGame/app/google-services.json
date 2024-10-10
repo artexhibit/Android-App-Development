@@ -12,7 +12,20 @@
           "package_name": "ru.igorcodes.quizgame"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "979905984261-nl5sco6sjdu06ar88ul0sspfkqcr4t44.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.igorcodes.quizgame",
+            "certificate_hash": "3f8e15777259f9ea2fd3e1a12186fa2f49434296"
+          }
+        },
+        {
+          "client_id": "979905984261-m28qrid3nlfra220tnik48do113dgvcf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBw0Mzqmli6aCnNXcIwxz01bFYSs9gr5-E"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "979905984261-m28qrid3nlfra220tnik48do113dgvcf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
