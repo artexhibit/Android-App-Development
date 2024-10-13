@@ -44,4 +44,5 @@
         <item>Australia</item>
         <item>Ireland</item>
     </string-array>
+    <string name="title_activity_jetpack_compose_main">JetpackComposeMainActivity</string>
 </resources>

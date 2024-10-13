@@ -29,6 +29,11 @@
         android:theme="@style/Theme.KotlinBasics"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".jetpackCompose.JetpackComposeMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_jetpack_compose_main"
+            android:theme="@style/Theme.KotlinBasics" />
 
         <receiver android:name=".periodicNotification.NotificationReceiver" />
         <receiver android:name=".notificationProcedures.Receiver" />
