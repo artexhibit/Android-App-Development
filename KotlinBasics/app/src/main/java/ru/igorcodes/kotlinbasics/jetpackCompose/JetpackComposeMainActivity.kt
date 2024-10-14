@@ -20,12 +20,14 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -41,12 +43,77 @@ class JetpackComposeMainActivity : ComponentActivity() {
         setContent {
             KotlinBasicsTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MyLayouts(name = "Android", modifier = Modifier.padding(innerPadding))
+                    //MyLayouts(name = "Android", modifier = Modifier.padding(innerPadding))
                     //MyAlignments()
                     //ButtonsExample()
+                    TextFieldsExample(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
+    }
+}
+
+@Composable
+fun TextFieldsExample(modifier: Modifier = Modifier) {
+    val myButtonBackgroundColor = remember { mutableStateOf(Color.Red) }
+    val myButtonText = remember { mutableStateOf("Do your magic") }
+    val myButtonTextColor = remember { mutableStateOf(Color.White) }
+    val myTextColor = remember { mutableStateOf(Color.Black) }
+    val valueOnTextFiled = remember { mutableStateOf("") }
+    val userInput = remember { mutableStateOf("Result") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(
+            onClick = {
+                userInput.value = valueOnTextFiled.value
+                valueOnTextFiled.value = ""
+            },
+            modifier = Modifier.size(250.dp, 60.dp),
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = myButtonBackgroundColor.value),
+            border = BorderStroke(3.dp, Color.Black)
+        ) {
+            Text(
+                text = myButtonText.value,
+                color = myButtonTextColor.value,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center
+            )
+        }
+
+        Spacer(modifier = Modifier.size(30.dp))
+
+        TextField(
+            value = valueOnTextFiled.value,
+            onValueChange = {
+                valueOnTextFiled.value = it
+            },
+            label = {
+                Text("Enter your name", color = Color.Blue)
+            },
+            modifier = Modifier.width(300.dp),
+            textStyle = TextStyle.Default.copy(fontSize = 25.sp),
+            maxLines = 2,
+            //keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            //visualTransformation = PasswordVisualTransformation()
+        )
+
+        Spacer(modifier = Modifier.size(30.dp))
+
+        Text(
+            text = userInput.value,
+            color = myTextColor.value,
+            fontSize = 25.sp,
+            modifier = Modifier
+                .background(Color.Red)
+                .padding(10.dp)
+        )
     }
 }
 
@@ -200,7 +267,8 @@ fun MyLayouts(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     KotlinBasicsTheme {
-        ButtonsExample()
+        TextFieldsExample()
+        //ButtonsExample()
         //MyAlignments()
         //MyLayouts(name = "Android")
     }
