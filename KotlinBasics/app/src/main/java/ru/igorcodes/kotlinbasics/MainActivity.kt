@@ -1,4 +1,5 @@
 package ru.igorcodes.kotlinbasics
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -15,6 +16,7 @@ import ru.igorcodes.kotlinbasics.firebase.FirebaseLoginActivity
 import ru.igorcodes.kotlinbasics.fragments.FragmentsActivity
 import ru.igorcodes.kotlinbasics.gridView.GridViewActivity
 import ru.igorcodes.kotlinbasics.intent.IntentMainActivity
+import ru.igorcodes.kotlinbasics.jetpackCompose.JetpackComposeMainActivity
 import ru.igorcodes.kotlinbasics.layouts.LayoutsActivity
 import ru.igorcodes.kotlinbasics.lifeCycles.LifeCyclesActivity
 import ru.igorcodes.kotlinbasics.listFragment.ListFragmentMainActivity
@@ -73,41 +75,42 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
 
     override fun onLessonClick(lesson: Lesson) {
         when (lesson) {
-            Lesson.GRID_VIEW -> createIntent(GridViewActivity())
-            Lesson.MY_FIRST_PROJECT -> createIntent(MyFirstProjectActivity())
-            Lesson.OBJECT_ORIENTED_PROGRAMMING -> createIntent(ObjectOrientedProgrammingActivity())
-            Lesson.INTENT -> createIntent(IntentMainActivity())
-            Lesson.LAYOUTS -> createIntent(LayoutsActivity())
-            Lesson.LIFE_CYCLES -> createIntent(LifeCyclesActivity())
-            Lesson.LIST_VIEW -> createIntent(ListViewActivity())
-            Lesson.RECYCLER_VIEW -> createIntent(RecyclerViewActivity())
-            Lesson.SCROLL_VIEW -> createIntent(ScrollViewActivity())
-            Lesson.SERVICES -> createIntent(ServicesActivity())
-            Lesson.TOP_APP_BAR -> createIntent(TopAppBarActivity())
-            Lesson.USER_INTERACTIONS -> createIntent(UserInteractionsActivity())
-            Lesson.WEB_VIEW -> createIntent(WebViewActivity())
-            Lesson.MULTIPLE_LANGUAGE -> createIntent(MultipleLanguageActivity())
-            Lesson.FRAGMENTS -> createIntent(FragmentsActivity())
-            Lesson.DIALOG_FRAGMENT -> createIntent(DialogFragmentActivity())
-            Lesson.LIST_FRAGMENT -> createIntent(ListFragmentMainActivity())
-            Lesson.SENDING_DATA_BETWEEN_ACTIVITIES -> createIntent(SendingDataBetweenActivitiesMainActivity())
-            Lesson.SENDING_DATA_FROM_ACTIVITY_TO_FRAGMENT -> createIntent(SendingDataFromActivityToFragmentActivity())
-            Lesson.SENDING_DATA_FROM_FRAGMENT_TO_ACTIVITY -> createIntent(SendingDataFromFragmentToActivityActivity())
-            Lesson.SENDING_DATA_FROM_FRAGMENT_TO_FRAGMENT -> createIntent(SendingDataFromFragmentToFragmentActivity())
-            Lesson.SEND_SMS -> createIntent(SendSMSActivity())
-            Lesson.SEND_EMAIL -> createIntent(SendEmailActivity())
-            Lesson.MAKE_CALL -> createIntent(MakeCallActivity())
-            Lesson.SPEECH_TO_TEXT -> createIntent(SpeechToTextActivity())
-            Lesson.LOCAL_NOTIFICATION -> createIntent(LocalNotificationActivity())
-            Lesson.PERIODIC_NOTIFICATION -> createIntent(PeriodicNotificationActivity())
-            Lesson.NOTIFICATION_PROCEDURES -> createIntent(NotificationProceduresActivity())
-            Lesson.FIREBASE -> createIntent(FirebaseLoginActivity())
-            Lesson.RETROFIT -> createIntent(RetrofitMainActivity())
+            Lesson.GRID_VIEW -> createIntent(GridViewActivity::class.java)
+            Lesson.MY_FIRST_PROJECT -> createIntent(MyFirstProjectActivity::class.java)
+            Lesson.OBJECT_ORIENTED_PROGRAMMING -> createIntent(ObjectOrientedProgrammingActivity::class.java)
+            Lesson.INTENT -> createIntent(IntentMainActivity::class.java)
+            Lesson.LAYOUTS -> createIntent(LayoutsActivity::class.java)
+            Lesson.LIFE_CYCLES -> createIntent(LifeCyclesActivity::class.java)
+            Lesson.LIST_VIEW -> createIntent(ListViewActivity::class.java)
+            Lesson.RECYCLER_VIEW -> createIntent(RecyclerViewActivity::class.java)
+            Lesson.SCROLL_VIEW -> createIntent(ScrollViewActivity::class.java)
+            Lesson.SERVICES -> createIntent(ServicesActivity::class.java)
+            Lesson.TOP_APP_BAR -> createIntent(TopAppBarActivity::class.java)
+            Lesson.USER_INTERACTIONS -> createIntent(UserInteractionsActivity::class.java)
+            Lesson.WEB_VIEW -> createIntent(WebViewActivity::class.java)
+            Lesson.MULTIPLE_LANGUAGE -> createIntent(MultipleLanguageActivity::class.java)
+            Lesson.FRAGMENTS -> createIntent(FragmentsActivity::class.java)
+            Lesson.DIALOG_FRAGMENT -> createIntent(DialogFragmentActivity::class.java)
+            Lesson.LIST_FRAGMENT -> createIntent(ListFragmentMainActivity::class.java)
+            Lesson.SENDING_DATA_BETWEEN_ACTIVITIES -> createIntent(SendingDataBetweenActivitiesMainActivity::class.java)
+            Lesson.SENDING_DATA_FROM_ACTIVITY_TO_FRAGMENT -> createIntent(SendingDataFromActivityToFragmentActivity::class.java)
+            Lesson.SENDING_DATA_FROM_FRAGMENT_TO_ACTIVITY -> createIntent(SendingDataFromFragmentToActivityActivity::class.java)
+            Lesson.SENDING_DATA_FROM_FRAGMENT_TO_FRAGMENT -> createIntent(SendingDataFromFragmentToFragmentActivity::class.java)
+            Lesson.SEND_SMS -> createIntent(SendSMSActivity::class.java)
+            Lesson.SEND_EMAIL -> createIntent(SendEmailActivity::class.java)
+            Lesson.MAKE_CALL -> createIntent(MakeCallActivity::class.java)
+            Lesson.SPEECH_TO_TEXT -> createIntent(SpeechToTextActivity::class.java)
+            Lesson.LOCAL_NOTIFICATION -> createIntent(LocalNotificationActivity::class.java)
+            Lesson.PERIODIC_NOTIFICATION -> createIntent(PeriodicNotificationActivity::class.java)
+            Lesson.NOTIFICATION_PROCEDURES -> createIntent(NotificationProceduresActivity::class.java)
+            Lesson.FIREBASE -> createIntent(FirebaseLoginActivity::class.java)
+            Lesson.RETROFIT -> createIntent(RetrofitMainActivity::class.java)
+            Lesson.JETPACK_COMPOSE -> createIntent(JetpackComposeMainActivity::class.java)
         }
     }
 
-    private fun createIntent(activity: AppCompatActivity) {
-        val intent = Intent(this, activity::class.java)
+    private fun createIntent(activity: Class<out Activity>) {
+        val intent = Intent(this, activity)
         startActivity(intent)
     }
 }

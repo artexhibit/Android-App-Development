@@ -31,10 +31,11 @@ enum class Lesson(val lessonName: String) {
     NOTIFICATION_PROCEDURES("NotificationProcedures"),
     FIREBASE("Firebase"),
     RETROFIT("Retrofit"),
+    JETPACK_COMPOSE("JetpackCompose"),
 }
 
 object LessonsData {
     fun lessonListItems(): ArrayList<Lesson> {
-        return ArrayList(Lesson.values().toList())
+        return ArrayList(Lesson.entries)
     }
 }
