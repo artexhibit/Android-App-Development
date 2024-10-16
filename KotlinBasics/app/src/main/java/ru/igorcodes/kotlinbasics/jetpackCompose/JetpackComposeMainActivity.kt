@@ -1,6 +1,7 @@
 package ru.igorcodes.kotlinbasics.jetpackCompose
-
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,32 +15,52 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -47,6 +68,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.DialogProperties
+import kotlinx.coroutines.launch
 import ru.igorcodes.kotlinbasics.R
 import ru.igorcodes.kotlinbasics.jetpackCompose.ui.theme.KotlinBasicsTheme
 
@@ -64,72 +87,308 @@ class JetpackComposeMainActivity : ComponentActivity() {
                     //ImagesExample(modifier = Modifier.padding(innerPadding))
                     //CheckBoxesExample(modifier = Modifier.padding(innerPadding))
                     //RadioButtonsExample(modifier = Modifier.padding(innerPadding))
-                    SwitchExample(modifier = Modifier.padding(innerPadding))
+                    //SwitchExample(modifier = Modifier.padding(innerPadding))
+                    //DropdownMenuExample(modifier = Modifier.padding(innerPadding))
+                    //ToastExample(modifier = Modifier.padding(innerPadding))
+                    //SnackbarExample(modifier = Modifier.padding(innerPadding))
+                    DialogExample(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SwitchExample(modifier: Modifier = Modifier) {
-    val switchState = remember { mutableStateOf(false) }
-    val myText = remember { mutableStateOf("The image is visible") }
-    val myAlphaValue = remember { mutableStateOf(1F) }
+fun DialogExample(modifier: Modifier = Modifier) {
+    val dialogStatus = remember { mutableStateOf(false) }
+    val textColor = remember { mutableStateOf(Color.White) }
+    val myContext = LocalContext.current
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.size(50.dp))
+        Button(
+            onClick = {
+                dialogStatus.value = true
+            }
+        ) {
+            Text("Show Dialog Message", color = textColor.value)
+        }
 
-        Switch(
-            checked = switchState.value,
-            onCheckedChange = {
-                switchState.value = it
+        if (dialogStatus.value) {
+            BasicAlertDialog(
+                onDismissRequest = {
+                    dialogStatus.value = false
+                },
+                properties = DialogProperties(
+                    dismissOnClickOutside = false,
+                    dismissOnBackPress = false
+                )
+            ) {
+                Surface(
+                    modifier = Modifier
+                        .wrapContentWidth()
+                        .wrapContentHeight(),
+                    shape = MaterialTheme.shapes.large,
+                    color = Color.Blue
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Start,
+                        ) {
+                        Image(
+                            painter = painterResource(R.drawable.bell),
+                            contentDescription = "",
+                            colorFilter = ColorFilter.tint(Color.White)
+                        )
 
-                if (!switchState.value) {
-                    myText.value = "This image is visible"
-                    myAlphaValue.value = 1F
-                } else {
-                    myText.value = "This image is invisible"
-                    myAlphaValue.value = 0F
+                        Spacer(modifier = Modifier.width(10.dp))
+
+                        Text(
+                            text = "Dialog Title",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Red
+                        )
+                            }
+
+                        Spacer(modifier = Modifier.height(24.dp))
+
+                        Text(
+                            text = "Do you want to change the text color of the button?",
+                            color = Color.White
+                        )
+
+                        Spacer(modifier = Modifier.height(24.dp))
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.End,
+                        ) {
+                            TextButton(
+                                onClick = {
+                                    dialogStatus.value = false
+                                    textColor.value = Color.Red
+                                    Toast.makeText(
+                                        myContext,
+                                        "Confirm button is Clicked",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                },
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                                modifier = Modifier.width(100.dp)
+                            ) {
+                                Text("YES", color = Color.Red)
+                            }
+
+                            Spacer(modifier = Modifier.width(20.dp))
+
+                            TextButton(
+                                onClick = {
+                                    dialogStatus.value = false
+                                    Toast.makeText(
+                                        myContext,
+                                        "Dismiss button is Clicked",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+
+                                },
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                                modifier = Modifier.width(100.dp)
+                            ) {
+                                Text("NO", color = Color.Red)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun SnackbarExample(modifier: Modifier = Modifier) {
+        val mySnackbarHostState = remember { SnackbarHostState() }
+        val myCoroutineScope = rememberCoroutineScope()
+        val myContext = LocalContext.current
+
+        Scaffold(
+            snackbarHost = {
+                SnackbarHost(
+                    hostState = mySnackbarHostState
+                ) {
+                    Snackbar(
+                        snackbarData = it,
+                        containerColor = Color.Red,
+                        contentColor = Color.White,
+                        actionColor = Color.Black,
+                        dismissActionContentColor = Color.Blue
+                    )
                 }
             },
-            colors = SwitchDefaults.colors(
-                checkedThumbColor = Color.Green,
-                checkedTrackColor = Color.Blue,
-                uncheckedThumbColor = Color.Gray,
-                uncheckedTrackColor = Color.Yellow
+            content = { padding ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Button(
+                        onClick = {
+                            myCoroutineScope.launch {
+                                val result = mySnackbarHostState.showSnackbar(
+                                    message = "This is a snackbar message",
+                                    actionLabel = "Show a Toast",
+                                    duration = SnackbarDuration.Indefinite,
+                                    withDismissAction = true
+                                )
+
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    Toast.makeText(myContext, "Action Performed", Toast.LENGTH_LONG)
+                                        .show()
+                                }
+                            }
+                        }) {
+                        Text("Show Snackbar Message")
+                    }
+                }
+            }
+        )
+    }
+
+    @Composable
+    fun ToastExample(modifier: Modifier = Modifier) {
+        val myContext = LocalContext.current
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Button(onClick = {
+                Toast.makeText(myContext, "This is a toast message", Toast.LENGTH_LONG).show()
+            }) {
+                Text("Show Toast Message")
+            }
+        }
+    }
+
+    @SuppressLint("AutoboxingStateValueProperty")
+    @Composable
+    fun DropdownMenuExample(modifier: Modifier = Modifier) {
+        val dropdownStatus = remember { mutableStateOf(false) }
+        val itemPosition = remember { mutableIntStateOf(0) }
+        val countryList = stringArrayResource(R.array.countryList)
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+            Box() {
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.clickable {
+                        dropdownStatus.value = true
+                    }
+                ) {
+                    Text(
+                        text = countryList[itemPosition.value],
+                        modifier = Modifier.clickable {
+                            dropdownStatus.value = true
+                        })
+                    Image(
+                        painter = painterResource(R.drawable.arrow_drop_down),
+                        contentDescription = ""
+                    )
+                }
+
+                DropdownMenu(
+                    expanded = dropdownStatus.value,
+                    onDismissRequest = {
+                        dropdownStatus.value = false
+                    }) {
+
+                    countryList.forEachIndexed { position, country ->
+                        DropdownMenuItem(text = { Text(country) }, onClick = {
+                            dropdownStatus.value = false
+                            itemPosition.intValue = position
+                        })
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun SwitchExample(modifier: Modifier = Modifier) {
+        val switchState = remember { mutableStateOf(false) }
+        val myText = remember { mutableStateOf("The image is visible") }
+        val myAlphaValue = remember { mutableFloatStateOf(1F) }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.size(50.dp))
+
+            Switch(
+                checked = switchState.value,
+                onCheckedChange = {
+                    switchState.value = it
+
+                    if (!switchState.value) {
+                        myText.value = "This image is visible"
+                        myAlphaValue.floatValue = 1F
+                    } else {
+                        myText.value = "This image is invisible"
+                        myAlphaValue.floatValue = 0F
+                    }
+                },
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = Color.Green,
+                    checkedTrackColor = Color.Blue,
+                    uncheckedThumbColor = Color.Gray,
+                    uncheckedTrackColor = Color.Yellow
+                )
             )
-        )
 
-        Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(30.dp))
 
-        Image(
-            painter = painterResource(R.drawable.cat),
-            contentDescription = "",
-            modifier = Modifier
-                .size(300.dp)
-                .alpha(myAlphaValue.value),
-            contentScale = ContentScale.Fit,
-            alignment = Alignment.Center
-        )
+            Image(
+                painter = painterResource(R.drawable.cat),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(300.dp)
+                    .alpha(myAlphaValue.floatValue),
+                contentScale = ContentScale.Fit,
+                alignment = Alignment.Center
+            )
 
-        Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(30.dp))
 
-        Text(
-            text = myText.value,
-            color = Color.White,
-            fontSize = 20.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .background(Color.Blue)
-                .width(300.dp)
-                .padding(vertical = 10.dp)
-        )
+            Text(
+                text = myText.value,
+                color = Color.White,
+                fontSize = 20.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .background(Color.Blue)
+                    .width(300.dp)
+                    .padding(vertical = 10.dp)
+            )
+        }
     }
 }
 
@@ -552,7 +811,11 @@ fun MyLayouts(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     KotlinBasicsTheme {
-        SwitchExample()
+        DialogExample()
+        //SnackbarExample()
+        //ToastExample()
+        //DropdownMenuExample()
+        //SwitchExample()
         //RadioButtonsExample()
         //CheckBoxesExample()
         //ImagesExample()
