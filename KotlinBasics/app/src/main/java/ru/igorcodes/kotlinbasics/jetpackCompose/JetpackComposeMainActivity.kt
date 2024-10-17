@@ -1,4 +1,5 @@
 package ru.igorcodes.kotlinbasics.jetpackCompose
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
@@ -23,6 +24,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -31,6 +37,8 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.RadioButtonDefaults
@@ -46,6 +54,8 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableIntStateOf
@@ -59,8 +69,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -91,10 +103,296 @@ class JetpackComposeMainActivity : ComponentActivity() {
                     //DropdownMenuExample(modifier = Modifier.padding(innerPadding))
                     //ToastExample(modifier = Modifier.padding(innerPadding))
                     //SnackbarExample(modifier = Modifier.padding(innerPadding))
-                    DialogExample(modifier = Modifier.padding(innerPadding))
+                    //DialogExample(modifier = Modifier.padding(innerPadding))
+                    TopAppBarExample(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TopAppBarExample(modifier: Modifier = Modifier) {
+    val actionText = remember { mutableStateOf("Actions Will Be Shown Here") }
+    val menuStatus = remember { mutableStateOf(false) }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                navigationIcon = {
+                    IconButton(onClick = {
+                        actionText.value = "Navigation Icon is Clicked"
+                    }
+                    ) {
+                        Icon(Icons.Filled.Menu, contentDescription = "")
+                    }
+                },
+                title = {
+                    Column {
+                        Text(
+                            stringResource(
+                                R.string.app_name
+                            ),
+                            fontSize = 20.sp
+                        )
+
+                        Text(
+                            text = "Subtitle",
+                            fontSize = 16.sp
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = {
+                        actionText.value = "Share Icon is Clicked"
+                    }
+                    ) {
+                        Icon(Icons.Filled.Share, contentDescription = "")
+                    }
+                    IconButton(onClick = {
+                        actionText.value = "Search Icon is Clicked"
+                    }
+                    ) {
+                        Icon(Icons.Filled.Search, contentDescription = "")
+                    }
+                    IconButton(onClick = {
+                        actionText.value = "More Icon is Clicked"
+                        menuStatus.value = true
+                    }
+                    ) {
+                        Icon(Icons.Filled.MoreVert, contentDescription = "")
+
+                        DropdownMenu(
+                            expanded = menuStatus.value,
+                            onDismissRequest = {
+                                menuStatus.value = false
+                            }
+                        ) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text("Settings")
+                                },
+                                onClick = {
+                                    menuStatus.value = false
+                                    actionText.value = "Settings is Clicked"
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = {
+                                    Text("Log Out")
+                                },
+                                onClick = {
+                                    menuStatus.value = false
+                                    actionText.value = "Log Out is Clicked"
+                                }
+                            )
+                        }
+                    }
+                },
+                colors = TopAppBarColors(
+                    colorResource(R.color.purple500),
+                    scrolledContainerColor = Color.White,
+                    navigationIconContentColor = Color.White,
+                    titleContentColor = Color.White,
+                    actionIconContentColor = Color.White
+                )
+            )
+        },
+        content = {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(it),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    actionText.value,
+                    color = Color.Black,
+                    fontSize = 18.sp
+                )
+            }
+        }
+    )
+}
+
+@Composable
+fun SnackbarExample(modifier: Modifier = Modifier) {
+    val mySnackbarHostState = remember { SnackbarHostState() }
+    val myCoroutineScope = rememberCoroutineScope()
+    val myContext = LocalContext.current
+
+    Scaffold(
+        snackbarHost = {
+            SnackbarHost(
+                hostState = mySnackbarHostState
+            ) {
+                Snackbar(
+                    snackbarData = it,
+                    containerColor = Color.Red,
+                    contentColor = Color.White,
+                    actionColor = Color.Black,
+                    dismissActionContentColor = Color.Blue
+                )
+            }
+        },
+        content = { padding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    onClick = {
+                        myCoroutineScope.launch {
+                            val result = mySnackbarHostState.showSnackbar(
+                                message = "This is a snackbar message",
+                                actionLabel = "Show a Toast",
+                                duration = SnackbarDuration.Indefinite,
+                                withDismissAction = true
+                            )
+
+                            if (result == SnackbarResult.ActionPerformed) {
+                                Toast.makeText(myContext, "Action Performed", Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        }
+                    }) {
+                    Text("Show Snackbar Message")
+                }
+            }
+        }
+    )
+}
+
+@Composable
+fun ToastExample(modifier: Modifier = Modifier) {
+    val myContext = LocalContext.current
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = {
+            Toast.makeText(myContext, "This is a toast message", Toast.LENGTH_LONG).show()
+        }) {
+            Text("Show Toast Message")
+        }
+    }
+}
+
+@SuppressLint("AutoboxingStateValueProperty")
+@Composable
+fun DropdownMenuExample(modifier: Modifier = Modifier) {
+    val dropdownStatus = remember { mutableStateOf(false) }
+    val itemPosition = remember { mutableIntStateOf(0) }
+    val countryList = stringArrayResource(R.array.countryList)
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        Box() {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.clickable {
+                    dropdownStatus.value = true
+                }
+            ) {
+                Text(
+                    text = countryList[itemPosition.value],
+                    modifier = Modifier.clickable {
+                        dropdownStatus.value = true
+                    })
+                Image(
+                    painter = painterResource(R.drawable.arrow_drop_down),
+                    contentDescription = ""
+                )
+            }
+
+            DropdownMenu(
+                expanded = dropdownStatus.value,
+                onDismissRequest = {
+                    dropdownStatus.value = false
+                }) {
+
+                countryList.forEachIndexed { position, country ->
+                    DropdownMenuItem(text = { Text(country) }, onClick = {
+                        dropdownStatus.value = false
+                        itemPosition.intValue = position
+                    })
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun SwitchExample(modifier: Modifier = Modifier) {
+    val switchState = remember { mutableStateOf(false) }
+    val myText = remember { mutableStateOf("The image is visible") }
+    val myAlphaValue = remember { mutableFloatStateOf(1F) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier = Modifier.size(50.dp))
+
+        Switch(
+            checked = switchState.value,
+            onCheckedChange = {
+                switchState.value = it
+
+                if (!switchState.value) {
+                    myText.value = "This image is visible"
+                    myAlphaValue.floatValue = 1F
+                } else {
+                    myText.value = "This image is invisible"
+                    myAlphaValue.floatValue = 0F
+                }
+            },
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = Color.Green,
+                checkedTrackColor = Color.Blue,
+                uncheckedThumbColor = Color.Gray,
+                uncheckedTrackColor = Color.Yellow
+            )
+        )
+
+        Spacer(modifier = Modifier.size(30.dp))
+
+        Image(
+            painter = painterResource(R.drawable.cat),
+            contentDescription = "",
+            modifier = Modifier
+                .size(300.dp)
+                .alpha(myAlphaValue.floatValue),
+            contentScale = ContentScale.Fit,
+            alignment = Alignment.Center
+        )
+
+        Spacer(modifier = Modifier.size(30.dp))
+
+        Text(
+            text = myText.value,
+            color = Color.White,
+            fontSize = 20.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .background(Color.Blue)
+                .width(300.dp)
+                .padding(vertical = 10.dp)
+        )
     }
 }
 
@@ -143,21 +441,21 @@ fun DialogExample(modifier: Modifier = Modifier) {
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.Start,
                         ) {
-                        Image(
-                            painter = painterResource(R.drawable.bell),
-                            contentDescription = "",
-                            colorFilter = ColorFilter.tint(Color.White)
-                        )
+                            Image(
+                                painter = painterResource(R.drawable.bell),
+                                contentDescription = "",
+                                colorFilter = ColorFilter.tint(Color.White)
+                            )
 
-                        Spacer(modifier = Modifier.width(10.dp))
+                            Spacer(modifier = Modifier.width(10.dp))
 
-                        Text(
-                            text = "Dialog Title",
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = Color.Red
-                        )
-                            }
+                            Text(
+                                text = "Dialog Title",
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Red
+                            )
+                        }
 
                         Spacer(modifier = Modifier.height(24.dp))
 
@@ -811,7 +1109,8 @@ fun MyLayouts(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     KotlinBasicsTheme {
-        DialogExample()
+        TopAppBarExample()
+        //DialogExample()
         //SnackbarExample()
         //ToastExample()
         //DropdownMenuExample()
