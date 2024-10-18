@@ -57,4 +57,6 @@
         <item>Ireland</item>
     </string-array>
     <string name="title_activity_jetpack_compose_main">JetpackComposeMainActivity</string>
+    <string name="title_activity_jetpack_navigation_one_main">JetpackNavigationOneMainActivity
+    </string>
 </resources>

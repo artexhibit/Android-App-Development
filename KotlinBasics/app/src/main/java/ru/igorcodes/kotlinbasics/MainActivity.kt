@@ -17,6 +17,7 @@ import ru.igorcodes.kotlinbasics.fragments.FragmentsActivity
 import ru.igorcodes.kotlinbasics.gridView.GridViewActivity
 import ru.igorcodes.kotlinbasics.intent.IntentMainActivity
 import ru.igorcodes.kotlinbasics.jetpackCompose.JetpackComposeMainActivity
+import ru.igorcodes.kotlinbasics.jetpackNavigationOne.JetpackNavigationOneMainActivity
 import ru.igorcodes.kotlinbasics.layouts.LayoutsActivity
 import ru.igorcodes.kotlinbasics.lifeCycles.LifeCyclesActivity
 import ru.igorcodes.kotlinbasics.listFragment.ListFragmentMainActivity
@@ -106,6 +107,7 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.FIREBASE -> createIntent(FirebaseLoginActivity::class.java)
             Lesson.RETROFIT -> createIntent(RetrofitMainActivity::class.java)
             Lesson.JETPACK_COMPOSE -> createIntent(JetpackComposeMainActivity::class.java)
+            Lesson.JETPACK_NAVIGATION_ONE -> createIntent(JetpackNavigationOneMainActivity::class.java)
         }
     }
 

@@ -1,5 +1,4 @@
 package ru.igorcodes.kotlinbasics.jetpackCompose
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast

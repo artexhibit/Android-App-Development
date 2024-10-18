@@ -122,6 +122,11 @@
             android:exported="false"
             android:label="@string/title_activity_jetpack_compose_main"
             android:theme="@style/Theme.KotlinBasics" />
+        <activity
+            android:name=".jetpackNavigationOne.JetpackNavigationOneMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_jetpack_navigation_one_main"
+            android:theme="@style/Theme.KotlinBasics" />
     </application>
 
 </manifest>

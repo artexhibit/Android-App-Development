@@ -35,12 +35,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -53,10 +53,10 @@ android {
 }
 
 dependencies {
-    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation("de.hdodenhof:circleimageview:3.1.0")
-    implementation("com.squareup.picasso:picasso:2.8")
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.circleimageview)
+    implementation(libs.picasso)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.navigation)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
