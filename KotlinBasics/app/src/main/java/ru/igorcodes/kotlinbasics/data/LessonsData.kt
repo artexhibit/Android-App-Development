@@ -32,7 +32,10 @@ enum class Lesson(val lessonName: String) {
     FIREBASE("Firebase"),
     RETROFIT("Retrofit"),
     JETPACK_COMPOSE("JetpackCompose"),
-    JETPACK_NAVIGATION_ONE("JetpackNavigationOne")
+    JETPACK_NAVIGATION_ONE("JetpackNavigationOne"),
+    JETPACK_LAZY_COLUMN("JetpackLazyColumn"),
+    JETPACK_LAZY_ROW("JetpackLazyRow"),
+    JETPACK_LAZY_GRID("JetpackLazyGrid")
 }
 
 object LessonsData {

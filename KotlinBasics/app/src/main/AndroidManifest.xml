@@ -127,6 +127,21 @@
             android:exported="false"
             android:label="@string/title_activity_jetpack_navigation_one_main"
             android:theme="@style/Theme.KotlinBasics" />
+        <activity
+            android:name=".jetpackLazyColumn.JetpackLazyColumnMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_jetpack_lazy_column_main"
+            android:theme="@style/Theme.KotlinBasics" />
+        <activity
+            android:name=".jetpackLazyRow.JetpackLazyRowMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_jetpack_lazy_row_main"
+            android:theme="@style/Theme.KotlinBasics" />
+        <activity
+            android:name=".jetpackLazyGrid.JetpackLazyGridMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_jetpack_lazy_grid_main"
+            android:theme="@style/Theme.KotlinBasics" />
     </application>
 
 </manifest>

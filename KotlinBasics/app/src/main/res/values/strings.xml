@@ -59,4 +59,7 @@
     <string name="title_activity_jetpack_compose_main">JetpackComposeMainActivity</string>
     <string name="title_activity_jetpack_navigation_one_main">JetpackNavigationOneMainActivity
     </string>
+    <string name="title_activity_jetpack_lazy_column_main">JetpackLazyColumnMainActivity</string>
+    <string name="title_activity_jetpack_lazy_row_main" />
+    <string name="title_activity_jetpack_lazy_grid_main" />
 </resources>

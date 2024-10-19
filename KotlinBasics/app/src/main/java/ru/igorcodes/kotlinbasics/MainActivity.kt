@@ -7,16 +7,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import ru.igorcodes.kotlinbasics.jetpackLazyColumn.JetpackLazyColumnMainActivity
 import ru.igorcodes.kotlinbasics.data.Lesson
 import ru.igorcodes.kotlinbasics.data.LessonsData
 import ru.igorcodes.kotlinbasics.databinding.ActivityMainBinding
 import ru.igorcodes.kotlinbasics.dialogFragment.DialogFragmentActivity
-import ru.igorcodes.kotlinbasics.firebase.FirebaseActivity
 import ru.igorcodes.kotlinbasics.firebase.FirebaseLoginActivity
 import ru.igorcodes.kotlinbasics.fragments.FragmentsActivity
 import ru.igorcodes.kotlinbasics.gridView.GridViewActivity
 import ru.igorcodes.kotlinbasics.intent.IntentMainActivity
 import ru.igorcodes.kotlinbasics.jetpackCompose.JetpackComposeMainActivity
+import ru.igorcodes.kotlinbasics.jetpackLazyGrid.JetpackLazyGridMainActivity
+import ru.igorcodes.kotlinbasics.jetpackLazyRow.JetpackLazyRowMainActivity
 import ru.igorcodes.kotlinbasics.jetpackNavigationOne.JetpackNavigationOneMainActivity
 import ru.igorcodes.kotlinbasics.layouts.LayoutsActivity
 import ru.igorcodes.kotlinbasics.lifeCycles.LifeCyclesActivity
@@ -108,6 +110,9 @@ class MainActivity: AppCompatActivity(), LessonClickListener {
             Lesson.RETROFIT -> createIntent(RetrofitMainActivity::class.java)
             Lesson.JETPACK_COMPOSE -> createIntent(JetpackComposeMainActivity::class.java)
             Lesson.JETPACK_NAVIGATION_ONE -> createIntent(JetpackNavigationOneMainActivity::class.java)
+            Lesson.JETPACK_LAZY_COLUMN -> createIntent(JetpackLazyColumnMainActivity::class.java)
+            Lesson.JETPACK_LAZY_ROW -> createIntent(JetpackLazyRowMainActivity::class.java)
+            Lesson.JETPACK_LAZY_GRID -> createIntent(JetpackLazyGridMainActivity::class.java)
         }
     }
 
